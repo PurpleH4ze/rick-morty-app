@@ -1,25 +1,35 @@
 "use client";
+import Pagination from "@/components/Pagination";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://rickandmortyapi.com/api/character"
-        );
-        const data = await response.json();
-        console.log("characters", data);
-        setCharacters(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://rickandmortyapi.com/api/character");
+      const data = await response.json();
+      console.log("characters", data);
+      setCharacters(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
+
+  const fetchDataWithPage = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log("characters", data);
+      setCharacters(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div className="bg-[#e4a788] min-h-screen flex items-center justify-center">
@@ -57,6 +67,7 @@ const Characters = () => {
             </ul>
           </div>
         </div>
+        <Pagination info={characters?.info} getData={fetchDataWithPage} />
       </div>
     </div>
   );
