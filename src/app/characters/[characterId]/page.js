@@ -3,7 +3,7 @@ import { getCharacterLocation } from "@/utils/api/location";
 import Image from "next/image";
 import { Suspense } from "react";
 
-async function LocationList({ location, img }) {
+async function CharacterDetail({ location, img }) {
   const characterLocation = await getCharacterLocation(location?.url);
 
   return (
@@ -43,7 +43,10 @@ export default async function Page({ params: { characterId } }) {
     <div className="bg-[#e4a788]">
       <h1>{character?.name}</h1>
       <Suspense fallback={<div>Loading...</div>}>
-        <LocationList location={character?.location} img={character?.image} />
+        <CharacterDetail
+          location={character?.location}
+          img={character?.image}
+        />
       </Suspense>
     </div>
   );
