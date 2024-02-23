@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 async function CharacterDetail({ location, img, character }) {
   const characterLocation = await getCharacterLocation(location?.url);
-  console.log('characterLocation', characterLocation);
+  console.log("characterLocation", characterLocation);
 
   return (
     characterLocation && (
@@ -13,11 +13,11 @@ async function CharacterDetail({ location, img, character }) {
         <div className="mt-6 border-t border-gray-100 flex items-center justify-center  ">
           <dl className="divide-y divide-gray-100 ">
             <div className="items-center px-4 py-6 sm:flex sm:flex-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-1 text-black sm:w-1/3 sm:text-right min-w-fit">
+              <dt className="text-sm font-medium leading-1 text-black sm:w-1/3 sm:text-right min-w-fit">
                 Character Name:
               </dt>
               <dd className="mt-1 text-sm leading-6 sm:mt-0 text-black sm:w-2/3 sm:text-left min-w-fit">
-              {character?.name}
+                {character?.name}
               </dd>
               <dt className="text-sm font-medium leading-1 text-black sm:w-1/3 sm:text-right min-w-fit">
                 Location Name:
@@ -51,7 +51,7 @@ export default async function Page({ params: { characterId } }) {
       <h1>{character?.name}</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <CharacterDetail
-        character={character}
+          character={character}
           location={character?.location}
           img={character?.image}
         />

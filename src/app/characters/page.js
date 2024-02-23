@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState("");
   const [isError, setIsError] = useState(false);
 
   const fetchData = async () => {
@@ -31,13 +31,14 @@ const Characters = () => {
       setCharacters(data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      
     }
   };
 
   const fetchCharacterWithName = async (name) => {
     try {
-      const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`);
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character/?name=${name}`
+      );
       const data = await response.json();
       console.log("character by name", data);
       setCharacters(data);
@@ -49,11 +50,9 @@ const Characters = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('data', firstName);
+    console.log("data", firstName);
     fetchCharacterWithName(firstName);
   };
-
-  
 
   return (
     <div className="bg-[#e4a788] min-h-screen flex items-center justify-center">
@@ -82,7 +81,7 @@ const Characters = () => {
                   </svg>
                 </span>
                 <input
-                 name='name'
+                  name="name"
                   type="text"
                   id="website-admin"
                   className="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -90,73 +89,78 @@ const Characters = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
-              <button type="submit" className="text-white bg-slate-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Search</button>
-
+              <button
+                type="submit"
+                className="text-white bg-slate-400  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                Search
+              </button>
             </form>
           </div>
           <div className="flex flex-col justify-center items-center ">
-            {!isError && characters?.results?.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="m-2 min-w-96  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-                >
-                  <a
-                    href={`/characters/${item.id}`}
-                    className="flex items-center justify-center"
+            {!isError &&
+              characters?.results?.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="m-2 md:min-w-72  lg:min-w-[600px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <Image
-                      className="w-20 h-20 rounded-md m-4"
-                      width={1000}
-                      height={1000}
-                      src={item.image}
-                      alt="Neil image"
-                    />
-                  </a>
-                  <div className="p-5">
-                    <a href={`/characters/${item.id}`}>
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-center">
-                        {item.name}
-                      </h5>
-                    </a>
-                    <div className="flex flex-row justify-evenly ">
-                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Is alive: {item.status}
-                      </p>
-                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Gender: {item.gender}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Location: {item.location.name}
-                      </p>
-                    </div>
                     <a
                       href={`/characters/${item.id}`}
-                      className="flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className="flex items-center justify-center"
                     >
-                      <span>Detail</span>
-                      <svg
-                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 14 10"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M1 5h12m0 0L9 1m4 4L9 9"
-                        />
-                      </svg>
+                      <Image
+                        className="w-20 h-20 rounded-md m-4"
+                        width={1000}
+                        height={1000}
+                        src={item.image}
+                        alt="Neil image"
+                      />
                     </a>
+                    <div className="p-5">
+                      <a href={`/characters/${item.id}`}>
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-center">
+                          {item.name}
+                        </h5>
+                      </a>
+                      <div className="flex flex-row justify-evenly ">
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Is alive: {item.status}
+                        </p>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Gender: {item.gender}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          Location: {item.location.name}
+                        </p>
+                      </div>
+                      <a
+                        href={`/characters/${item.id}`}
+                        className="flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        <span>Detail</span>
+                        <svg
+                          className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 14 10"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                          />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
         <Pagination info={characters?.info} getData={fetchDataWithPage} />
