@@ -8,8 +8,8 @@ async function CharacterDetail({ location, img }) {
 
   return (
     characterLocation && (
-      <div>
-        <div className="mt-6 border-t border-gray-100 flex items-center justify-center ">
+      <div className="min-h-screen">
+        <div className="mt-6 border-t border-gray-100 flex items-center justify-center  ">
           <dl className="divide-y divide-gray-100 ">
             <div className="items-center px-4 py-6 sm:flex sm:flex-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-1 text-black sm:w-1/3 sm:text-right min-w-fit">
