@@ -23,12 +23,12 @@ const Locations = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-semibold mb-4">Locations Page</h1>
         <p className="text-lg">Locations</p>
-        <div className="flex flex-col justify-center items-center ">
+        <div className="flex flex-wrap justify-center items-center ">
           {locations?.results?.map((item, index) => {
             return (
               <div
                 key={index}
-                className="m-2 md:min-w-72  lg:min-w-[600px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="m-2 md:min-w-64 lg:min-w-96  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
               >
                 <a
                   href={`/locations/${item.id}`}

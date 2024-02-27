@@ -97,13 +97,13 @@ const Characters = () => {
               </button>
             </form>
           </div>
-          <div className="flex flex-col justify-center items-center ">
+          <div className="flex flex-wrap justify-center items-center ">
             {!isError &&
               characters?.results?.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="m-2 md:min-w-72  lg:min-w-[600px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                    className="m-2 md:min-w-72  lg:min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                   >
                     <a
                       href={`/characters/${item.id}`}

@@ -1,6 +1,7 @@
 import { getCharacter } from "@/utils/api/character";
 import { getCharacterLocation } from "@/utils/api/location";
 import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
 
 async function CharacterDetail({ location, img, character }) {
@@ -23,7 +24,9 @@ async function CharacterDetail({ location, img, character }) {
                 Location Name:
               </dt>
               <dd className="mt-1 text-sm leading-6 sm:mt-0 text-black sm:w-2/3 sm:text-left min-w-fit">
-                {characterLocation?.name}
+                <Link href={`/locations/${characterLocation.id}`}>
+                  {characterLocation?.name}
+                </Link>
               </dd>
             </div>
           </dl>
