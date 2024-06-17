@@ -6,8 +6,6 @@ import { Suspense } from "react";
 
 async function CharacterDetail({ location, img, character }) {
   const characterLocation = await getCharacterLocation(location?.url);
-  
-
   return (
     characterLocation && (
       <div className="min-h-screen">
