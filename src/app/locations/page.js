@@ -7,7 +7,6 @@ const Locations = () => {
     try {
       const response = await fetch("https://rickandmortyapi.com/api/location");
       const locations = await response.json();
-      console.log("locations", locations);
       setLocations(locations);
     } catch (error) {
       setIsError(true);

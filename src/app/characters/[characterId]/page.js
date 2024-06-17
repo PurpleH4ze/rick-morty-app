@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 async function CharacterDetail({ location, img, character }) {
   const characterLocation = await getCharacterLocation(location?.url);
-  console.log("characterLocation", characterLocation);
+  
 
   return (
     characterLocation && (
@@ -47,7 +47,6 @@ async function CharacterDetail({ location, img, character }) {
 
 export default async function Page({ params: { characterId } }) {
   const character = await getCharacter(characterId);
-  console.log("character", character);
 
   return (
     <div className="bg-[#e4a788]">
