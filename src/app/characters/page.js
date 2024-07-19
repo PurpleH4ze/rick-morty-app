@@ -12,7 +12,7 @@ const Characters = () => {
     try {
       const response = await fetch("https://rickandmortyapi.com/api/character");
       const data = await response.json();
-      console.log("characters", data);
+      
       setCharacters(data);
     } catch (error) {
       setIsError(true);
@@ -27,7 +27,6 @@ const Characters = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log("characters", data);
       setCharacters(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -40,7 +39,6 @@ const Characters = () => {
         `https://rickandmortyapi.com/api/character/?name=${name}`
       );
       const data = await response.json();
-      console.log("character by name", data);
       setCharacters(data);
     } catch (error) {
       setIsError(true);
@@ -50,7 +48,6 @@ const Characters = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("data", firstName);
     fetchCharacterWithName(firstName);
   };
 
@@ -97,13 +94,13 @@ const Characters = () => {
               </button>
             </form>
           </div>
-          <div className="flex flex-col justify-center items-center ">
+          <div className="flex flex-wrap justify-center items-center ">
             {!isError &&
               characters?.results?.map((item, index) => {
                 return (
                   <div
                     key={index}
-                    className="m-2 md:min-w-72  lg:min-w-[600px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                    className="m-2 md:min-w-72  lg:min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                   >
                     <a
                       href={`/characters/${item.id}`}
