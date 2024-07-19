@@ -23,24 +23,25 @@ const Episodes = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-semibold mb-4">Episodes Page</h1>
         <p className="text-lg">Episodes</p>
-        <div className="flex flex-wrap justify-center items-center ">
+        <div className="flex flex-wrap justify-center items-center">
           {episodes?.map((item, index) => {
             return (
               <div
                 key={index}
-                className="m-2 md:min-w-64 lg:min-w-96  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                className="m-2 md:min-w-64 lg:min-w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between"
               >
                 <a
                   href={`/episodes/${item.id}`}
                   className="flex items-center justify-center"
                 ></a>
-                <div className="p-5">
+                <div className="p-5 flex-1">
                   <a href={`/locations/${item.id}`}>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-center">
                       {item.name}
                     </h5>
                   </a>
-
+                </div>
+                <div className="p-5">
                   <a
                     href={`/locations/${item.id}`}
                     className="flex items-center justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
