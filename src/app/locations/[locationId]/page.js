@@ -4,7 +4,7 @@ import { getCharacterLocationById } from "@/utils/api/location";
 import { Suspense } from "react";
 
 async function LocationDetail({ location, residents }) {
-  console.log("location", location);
+  //console.log("location", location);
   console.log("residents", residents);
   return (
     location && (
@@ -28,9 +28,13 @@ async function LocationDetail({ location, residents }) {
           </dl>
         </div>
         <div className="flex flex-row flex-wrap gap-5 justify-center items-center">
-          {residents?.map((item, index) => (
-            <Resident key={index} resident={item} />
-          ))}
+          {residents?.lenght > 0 ? (
+            residents?.map((item, index) => (
+              <Resident key={index} resident={item} />
+            ))
+          ) : (
+            <Resident key={residents?.id} resident={residents} />
+          )}
         </div>
       </div>
     )

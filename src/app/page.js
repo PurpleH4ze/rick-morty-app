@@ -6,16 +6,25 @@ export default function Home() {
       href: "/characters",
       title: "Characters",
       description: "Learn more about characters.",
+      fullSize: false,
     },
     {
       href: "/locations",
       title: "Locations",
       description: "Explore locations.",
+      fullSize: false,
     },
     {
       href: "/episodes",
       title: "Episodes",
       description: "Check out the episodes.",
+      fullSize: false,
+    },
+    {
+      href: "/best-episodes",
+      title: "Best Episodes",
+      description: "All the best",
+      fullSize: true,
     },
   ];
   return (
@@ -28,6 +37,7 @@ export default function Home() {
             href={item.href}
             title={item.title}
             description={item.description}
+            fullSize={item.fullSize}
           />
         ))}
       </div>
