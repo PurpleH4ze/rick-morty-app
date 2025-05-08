@@ -1,5 +1,6 @@
 "use client";
 import Pagination from "@/components/Pagination";
+import withAuth from "@/components/withAuth/withAuth";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -12,7 +13,7 @@ const Characters = () => {
     try {
       const response = await fetch("https://rickandmortyapi.com/api/character");
       const data = await response.json();
-      
+
       setCharacters(data);
     } catch (error) {
       setIsError(true);
@@ -166,4 +167,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default withAuth(Characters, ['ADMIN']);
