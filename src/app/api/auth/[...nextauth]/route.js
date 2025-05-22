@@ -11,21 +11,37 @@ export const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const { username, password } = credentials;
+        try {
+          const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+          const res = await fetch(`${baseUrl}/api/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(credentials),
+          });
 
-        // Örnek kullanıcı doğrulama (gerçek backend doğrulaması yapılabilir)
-        if (username === "emre" && password === "admin") {
-          const user = {
-            id: 1,
-            username,
-            roles: ["ADMIN", 'SUPER-USER', 'READ'],
-            accessToken: "access-token",
-            refreshToken: "refresh-token",
-          };
-          return user;
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.error || "Authentication failed");
+          }
+
+          if (data.user) {
+            return {
+              id: data.user.id,
+              name: data.user.username,
+              email: `${data.user.username}@example.com`,
+              username: data.user.username,
+              roles: data.user.roles,
+              accessToken: data.accessToken,
+              refreshToken: data.refreshToken,
+            };
+          }
+
+          return null;
+        } catch (error) {
+          console.error("Auth error:", error);
+          return null;
         }
-
-        return null; // Hatalı kullanıcı
       },
     }),
   ],
@@ -35,10 +51,12 @@ export const handler = NextAuth({
   },
   session: {
     strategy: "jwt",
+    maxAge: 1 * 60 * 60, // 1 saat
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        token.id = user.id;
         token.username = user.username;
         token.roles = user.roles;
         token.accessToken = user.accessToken;
@@ -47,13 +65,17 @@ export const handler = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      session.user.username = token.username;
-      session.user.roles = token.roles;
-      session.user.accessToken = token.accessToken;
-      session.user.refreshToken = token.refreshToken;
+      if (token) {
+        session.user.id = token.id;
+        session.user.username = token.username;
+        session.user.roles = token.roles;
+        session.user.accessToken = token.accessToken;
+        session.user.refreshToken = token.refreshToken;
+      }
       return session;
     },
   },
+  debug: process.env.NODE_ENV === "development",
 });
 
 export { handler as GET, handler as POST };
