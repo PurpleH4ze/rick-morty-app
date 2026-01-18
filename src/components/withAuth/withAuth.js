@@ -19,7 +19,7 @@ export default function withAuth(Component, requiredRoles = []) {
         !session.user.roles.some((role) => requiredRoles.includes(role))
       ) {
         // Giriş yapmış ama gerekli role sahip değilse yetkisiz sayfasına yönlendir
-        router.push("/unauthorized");
+        router.push("/no-acces");
       }
     }, [status, session, requiredRoles, router, pathname]);
 

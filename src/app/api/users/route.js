@@ -37,9 +37,9 @@ export async function POST(request) {
 
     // Şifreyi doğrula
     const isValidPassword = await bcrypt.compare(password, user.password);
-    console.log("Password validation:", { 
-      provided: password, 
-      isValid: isValidPassword 
+    console.log("Password validation:", {
+      provided: password,
+      isValid: isValidPassword
     });
 
     if (!isValidPassword) {

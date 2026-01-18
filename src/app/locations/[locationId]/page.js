@@ -6,6 +6,11 @@ import { Suspense } from "react";
 async function LocationDetail({ location, residents }) {
   //console.log("location", location);
   console.log("residents", residents);
+  const residentList = Array.isArray(residents)
+    ? residents
+    : residents
+      ? [residents]
+      : [];
   return (
     location && (
       <div className="min-h-screen">
@@ -28,13 +33,9 @@ async function LocationDetail({ location, residents }) {
           </dl>
         </div>
         <div className="flex flex-row flex-wrap gap-5 justify-center items-center">
-          {residents?.lenght > 0 ? (
-            residents?.map((item, index) => (
-              <Resident key={index} resident={item} />
-            ))
-          ) : (
-            <Resident key={residents?.id} resident={residents} />
-          )}
+          {residentList.map((item, index) => (
+            <Resident key={item?.id ?? index} resident={item} />
+          ))}
         </div>
       </div>
     )

@@ -1,5 +1,10 @@
 export const getCharacter = async (id) => {
-  const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+  if (!id || (Array.isArray(id) && id.length === 0)) {
+    return null;
+  }
+
+  const idPath = Array.isArray(id) ? id.join(",") : id;
+  const res = await fetch(`https://rickandmortyapi.com/api/character/${idPath}`);
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
